@@ -1,0 +1,31 @@
+get data
+- current data via APIs
+Alpaca websocket continuously providing stock information (yet to test)
+
+- historical data for machine learning
+Quandl not only has historical price data but also data about social and fed stuff
+
+
+process data
+- numpy, pandas
+
+interpret data
+- score based on current trends and online sentiments
+- ziptrader
+- real life events? current interest rates? current affairs?
+- technical analysis 
+
+machine learning + logging
+- tweak bot settings based on training models, save configs as txt
+
+display data
+- flask
+
+trade with the data
+- reasonable stop losses and entries
+
+miscallaneous
+- error handling
+
+future ideas
+- investing instead of trading
