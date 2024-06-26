@@ -16,7 +16,8 @@ interpret data
 - technical analysis 
 
 machine learning + logging
-- tweak bot settings based on training models, save configs as txt
+- tweak bot settings based on training models, save configs as txt (supervised learning)
+- Unsupervised learning: which stocks ran yesterday, find a pattern?
 
 display data
 - flask
