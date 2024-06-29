@@ -12,7 +12,7 @@ process data
 interpret data
 - score based on current trends and online sentiments
 - ziptrader
-- real life events? current interest rates? current affairs?
+- real life events? current interest rates? current affairs? alpha vintage has news API to train LLM?
 - technical analysis 
 
 machine learning + logging

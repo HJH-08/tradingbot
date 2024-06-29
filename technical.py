@@ -22,6 +22,14 @@ def compute_macd(data, fastperiod=12, slowperiod=26, signalperiod=9):
     signal = macd.ewm(span=signalperiod, adjust=False).mean()
     return macd - signal
 
+def alpaca_compute_macd(data, fastperiod=12, slowperiod=26, signalperiod=9):
+    exp1 = data.ewm(span=fastperiod, adjust=False).mean()
+    exp2 = data.ewm(span=slowperiod, adjust=False).mean()
+    macd = exp1 - exp2
+    signal = macd.ewm(span=signalperiod, adjust=False).mean()
+    return macd, signal
+
+
 def compute_williams_r(data, window=14):
     low_min = data['Low'].rolling(window=window).min()
     high_max = data['High'].rolling(window=window).max()

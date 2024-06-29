@@ -1,0 +1,2 @@
+supervised learning regression
+- given indicators and the stock prices (continuous )
