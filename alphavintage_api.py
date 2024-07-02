@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 
 # Alpha Vantage API credentials
 ALPHA_VANTAGE_API_KEY = '6RZTXKD3H4L7ST8X6RZTXKD3H4L7ST8X'
-STOCKS = ['AAPL', 'MSFT', 'GOOG', 'TSLA', 'AMZN']
+# STOCKS = ['AAPL', 'MSFT', 'GOOG', 'TSLA', 'AMZN']
+STOCKS = ['AAPL']
 ALPHA_VANTAGE_URL = 'https://www.alphavantage.co/query'
 
 # Function to fetch intraday data from Alpha Vantage
@@ -32,7 +33,7 @@ def fetch_intraday_data(symbol, interval='15min', outputsize='compact'):
         df = df.sort_index()
         return df
     else:
-        print(f"Failed to fetch data for {symbol}: {data.get('Note', 'Unknown error')}")
+        print(f"Failed to fetch INTRADAY data for {symbol}: {data.get('Note', 'Unknown error')}")
         return pd.DataFrame()
 
 # Function to fetch technical indicators from Alpha Vantage
@@ -52,8 +53,9 @@ def fetch_technical_indicator(symbol, indicator, interval='daily', time_period=2
         df = pd.DataFrame.from_dict(data['Technical Analysis'][key], orient='index', dtype='float')
         df.index = pd.to_datetime(df.index)
         df = df.sort_index()
-        return df
-    else:
+        return df.iloc[-1:]
+    else: #TROUBLESHOOT
+        print(data)
         print(f"Failed to fetch indicator {indicator} for {symbol}: {data.get('Note', 'Unknown error')}")
         return pd.DataFrame()
 
