@@ -1,6 +1,8 @@
 get data
 - current data via APIs
-Alpaca websocket continuously providing stock information (yet to test)
+Alpaca websocket continuously providing stock information: issues + cannot test due to API rate limits
+YFinance:
+
 
 - historical data for machine learning
 Quandl not only has historical price data but also data about social and fed stuff
