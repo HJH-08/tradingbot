@@ -1,2 +1,6 @@
 supervised learning regression
 - given indicators and the stock prices (continuous )
+
+- linear regression line and 2 standard deviations for mean reversion strategy
+- modify number of candles considered? optimisation
+- combine with a moving average for momentum? or coefficient of linear regression?
