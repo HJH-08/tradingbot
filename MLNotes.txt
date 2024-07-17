@@ -1,6 +1,10 @@
 supervised learning regression
-- given indicators and the stock prices (continuous )
-
+- compare x days, use machine learning to find best fit line with lowest MSE [ordinary least squares]
+- setting the derivative of the sum of squared residuals to zero and solving for the coefficients (input values as matrix)
+- Correlation as R^2
 - linear regression line and 2 standard deviations for mean reversion strategy
 - modify number of candles considered? optimisation
 - combine with a moving average for momentum? or coefficient of linear regression?
+
+
+svr
