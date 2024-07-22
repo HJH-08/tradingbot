@@ -8,3 +8,6 @@ supervised learning regression
 
 
 svr
+
+k nearest neighbours
+normalise data first so euclidean distance makes sense
