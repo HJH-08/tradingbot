@@ -9,5 +9,10 @@ supervised learning regression
 
 svr
 
-k nearest neighbours
+k nearest neighbours (classification)
 normalise data first so euclidean distance makes sense
+features used are TAs like RSI, lag features like previous RSI, then plot in a multi dimensional space
+hypertune k using grid search (1-31), cross validate (5-fold) to get k that gives highest accuracy
+train the model: data next day, if close next day > close today: 1, else 0
+result: worse than random ... sensitive to noise, more factors like new sentiment, all features are equally weighted (but 
+the correlation is not equal)

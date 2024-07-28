@@ -28,7 +28,7 @@ trade with the data
 - reasonable stop losses and entries
 
 miscallaneous
-- error handling
+- error handling, backtesting, cross validation
 
 future ideas
 - investing instead of trading
