@@ -1,20 +1,13 @@
+from transformers import pipeline
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import re
+import torch
 
-# Initialize VADER sentiment analyzer
-analyzer = SentimentIntensityAnalyzer()
-
-def preprocess_text(text):
-    # Remove unwanted characters and normalize the text
-    text = re.sub(r'http\S+', '', text)  # Remove URLs
-    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove special characters and numbers
-    text = text.lower()  # Convert to lowercase
-    return text
+# Initialize the sentiment analysis pipeline using a transformer model
+sentiment_model = pipeline('sentiment-analysis', model="distilbert-base-uncased-finetuned-sst-2-english")
 
 def get_news_sentiment_selenium(stock_tickers):
     sentiment_dict = {}
@@ -40,17 +33,23 @@ def get_news_sentiment_selenium(stock_tickers):
                 print(f"No headlines found for {ticker}")
                 continue
             
-            sentiment_score = 0
+            sentiment_scores = []
             for headline in headlines:
                 text = headline.get_text()
-                text = preprocess_text(text)
                 
-                # Use VADER for sentiment analysis
-                analysis = analyzer.polarity_scores(text)
-                sentiment_score += analysis['compound']
+                # Perform sentiment analysis using the transformer model
+                analysis = sentiment_model(text)
+                
+                # Extract sentiment score (convert 'POSITIVE'/'NEGATIVE' labels to +1/-1)
+                score = 1 if analysis[0]['label'] == 'POSITIVE' else -1
+                sentiment_scores.append(score * analysis[0]['score'])
             
-            average_sentiment = sentiment_score / len(headlines)
-            sentiment_dict[ticker] = average_sentiment
+            # Calculate the average sentiment score for the ticker
+            if sentiment_scores:
+                average_sentiment = sum(sentiment_scores) / len(sentiment_scores)
+                sentiment_dict[ticker] = average_sentiment
+            else:
+                sentiment_dict[ticker] = 0
         
         except Exception as e:
             print(f"Error fetching data for {ticker}: {e}")

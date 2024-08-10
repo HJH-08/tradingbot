@@ -16,3 +16,11 @@ hypertune k using grid search (1-31), cross validate (5-fold) to get k that give
 train the model: data next day, if close next day > close today: 1, else 0
 result: worse than random ... sensitive to noise, more factors like new sentiment, all features are equally weighted (but 
 the correlation is not equal)
+
+NLP
+Vader: tokenization (remove stop words) -> lookup vader's lexicons -> valence score of +4/-4 based on each lexicon (CAPS, punctuation)
+negation, degree (very) -> scaled to compound score of -1 to 1 (does not account for relationship of words: sarcasm)
+BERT: bidirectional (more context for word) [masked language model: random words masked, have to take context from both sides]
+tokenization (special classification token: aggregate of entire string) -> 
+vectorized (many parameters capturing semantics based on word/part of speech+ importance of each word wrt others) -> 
+further fine tuning (based on focused dataset)
